@@ -1,0 +1,62 @@
+{%extends "layout.html"%}
+{%block css_adicional%}
+<style>
+
+.sec-produtos{
+    display: flex;
+    background-color: rgba(206, 139, 68, 0.85);
+    padding: 20px 20px 40px 20px;
+    width: 100%;
+    align-items: center;
+}
+.produtos-backend{
+    display: flex;
+    width: 50%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.produtos-backend-texto{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 12px;
+}
+.produtos-backend-texto button {
+    width: auto;
+    padding: 10px 20px;
+    margin: 10px auto 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #ce8b44;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.produtos-backend-texto button:hover {
+    background-color: #a96f32;
+    transform: scale(1.05);
+}
+
+</style>
+{%endblock%}
+{%block conteudo%}
+<section class="sec-produtos">
+
+    <div class="produtos-backend">
+        <img src="https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+    </div>
+    <div class="produtos-backend-texto">
+        <h1>HAMBURGUER TESTE</h1>
+        <p>Harburguer de bacon - 170g <br> Composto por pão e bacon. <br> R$ 1900,00</p>
+        <button>Compre já!</button>
+    </div>
+</section>
+{%endblock%}
