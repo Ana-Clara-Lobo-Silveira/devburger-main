@@ -10,7 +10,7 @@ class Conexao():
             port = 3306,
             user = "root",
             password="root",
-            database = "naclmusic"
+            database = "cardapio"
         )
         cur = con.cursor(dictionary=True)
 
