@@ -15,3 +15,12 @@ def rec_produtos_rap():
     con.close()
 
     return produtos
+
+
+def rec_produto_u():
+    con, cur  = Conexao.conectar()
+    cur.execute("SELECT codigo, url_imagem, produto, descricao, destaque, preco FROM produto where codigo = %s;", [codigo])
+    produto = cur.fetchone()
+    con.close()
+
+    return produto

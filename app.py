@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from model.produtos import rec_produtos_rap
 from model.produtos import rec_destaques
+from model.produtos import rec_produto_u
 
 app = Flask(__name__)
 
@@ -11,9 +12,10 @@ def pg_index():
     recuperar_produtos = rec_produtos_rap()
     return render_template("index.html", produtos = recuperar_produtos, destaques = recuperar_destaques)
 
-@app.route("/produto")
-def pg_produto():
-    return render_template("produto.html")
+@app.route("/produto/<codigo>")
+def pg_produto(codigo):
+    recuperar_produto = rec_produto_u(codigo)
+    return render_template("produto.html", produto = recuperar_produto)
 
 
 if __name__ == "__main__":

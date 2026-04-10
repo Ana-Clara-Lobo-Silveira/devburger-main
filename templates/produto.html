@@ -49,13 +49,12 @@
 {%endblock%}
 {%block conteudo%}
 <section class="sec-produtos">
-
     <div class="produtos-backend">
-        <img src="https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+        <img src="{{produto.url_imagem}}">
     </div>
     <div class="produtos-backend-texto">
-        <h1>HAMBURGUER TESTE</h1>
-        <p>Harburguer de bacon - 170g <br> Composto por pão e bacon. <br> R$ 1900,00</p>
+        <h1>{{produto.produto}}</h1>
+        <p>{{produto.descricao}} <br> {{produto.preco}}</p>
         <button>Compre já!</button>
     </div>
 </section>
