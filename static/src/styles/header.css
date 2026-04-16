@@ -15,7 +15,7 @@
 }
 
 .header__logo{
-    color: #CE8B44;
+    color: 4;
     text-decoration: none;
     font-family: "Material Symbols Outlined";
     font-weight: bold;
@@ -64,4 +64,12 @@
 .header__social{
     display: flex;
     gap: 10px;
+}
+.side_icons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.side_icons p{
+    color:beige;
 }

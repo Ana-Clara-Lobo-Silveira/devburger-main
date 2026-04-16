@@ -31,8 +31,8 @@
 <body>
     <header class="header">
         <div class="header__container">
-            <a href="#" class="header__logo">DevBurger</a>
-
+            <a href="" class="header__logo">DevBurger</a>
+            
             <nav class="header__nav">
                 <ul class="header__menu">
                     <li class="header__item">
@@ -49,15 +49,16 @@
                     </li>
                 </ul>
             </nav>
-
+            
             <div class="header__social">
                 <a href="#" class="header__icon"><span class="material-symbols-outlined">thumb_up</span></a>
                 <a href="#" class="header__icon"><span class="material-symbols-outlined">photo_camera</span></a>
             </div>
-
-            <button class="header__toggle">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
+            <div class="side_icons">
+                    <a href="/logout"><span class="material-symbols-outlined">logout</span></a>
+                    <a href="/login" class="header__icon"><span class="material-symbols-outlined">person</span></a>
+                <p>{{session.usuario_log}}</p>
+            </div>
         </div>
     </header>
 
