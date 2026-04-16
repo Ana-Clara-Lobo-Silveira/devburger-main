@@ -17,7 +17,7 @@ def rec_produtos_rap():
     return produtos
 
 
-def rec_produto_u():
+def rec_produto_u(codigo):
     con, cur  = Conexao.conectar()
     cur.execute("SELECT codigo, url_imagem, produto, descricao, destaque, preco FROM produto where codigo = %s;", [codigo])
     produto = cur.fetchone()
