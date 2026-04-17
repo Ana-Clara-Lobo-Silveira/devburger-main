@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS produto (
 
 CREATE TABLE IF NOT EXISTS cadastro(
 usuario VARCHAR(20) NOT NULL PRIMARY KEY,
-senha VARCHAR(100) NOT NULL
+senha VARCHAR(200) NOT NULL, 
+nome varchar(100) default "Anônimo"
 );
 
 

@@ -7,6 +7,7 @@ values("Hamburguer 1", "blablabla", 1, 200, "https://images.pexels.com/photos/16
 
 INSERT INTO cardapio.cadastro
 (`usuario`,
-`senha`)
+`senha`,
+`nome`)
 VALUES
-("Ana Clara", "1234");
+("Ana Clara", "1234", "Ana");

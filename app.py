@@ -30,7 +30,8 @@ def pg_cadastro_get():
 def pg_cadastro():
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")
-    if cadastro(usuario, senha):
+    nome = request.form.get("nome")
+    if cadastro(usuario, senha, nome):
         return redirect("/login")
     else:
         return "Complete as informações corretamente"
@@ -43,8 +44,11 @@ def pg_login_get():
 def pg_login():
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")
-    if verifica_cadastrado(usuario,senha):
-        session["usuario_log"] = usuario
+
+    usuario_log_s= verifica_cadastrado(usuario,senha)
+
+    if usuario_log_s:
+        session["usuario_log"] = usuario_log_s["nome"]
         return redirect("/")
     else:
         return redirect("/login")
