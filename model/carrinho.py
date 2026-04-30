@@ -11,8 +11,8 @@ def rec_carrinho(usuario:str)->list:
                         produto.preco,
                         produto.url_imagem
                     FROM carrinho
-                    INNER JOIN itens_carrinho ON carrinho.codigo_carrinho = itens_carrinho.codigo_carrinho
-                    INNER JOIN produto ON produto.codigo = itens_carrinho.codigo_produto
+                    INNER JOIN itens_car ON carrinho.codigo_carrinho = itens_car.codigo_carrinho
+                    INNER JOIN produto ON produto.codigo = itens_car.codigo_produto
                     WHERE carrinho.usuario = %s;""", [usuario])
     resultado = cur.fetchall()
     con.close()

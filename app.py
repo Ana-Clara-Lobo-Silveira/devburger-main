@@ -1,13 +1,14 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, jsonify
 from model.produtos import rec_produtos_rap
 from model.produtos import rec_destaques
 from model.produtos import rec_produto_u
 from model.cadastro import cadastro
 from model.cadastro import verifica_cadastrado
+from model.carrinho import rec_carrinho
 
 app = Flask(__name__)
 app.secret_key = "DevBurguer"
-
+#----RECUPERAR----------------------------------------------------------------------------
 @app.route("/")
 def pg_index():
     recuperar_destaques = rec_destaques()
@@ -20,7 +21,7 @@ def pg_index():
 def pg_produto(codigo):
     recuperar_produto = rec_produto_u(codigo)
     return render_template("produto.html", produto = recuperar_produto)
-# -----------------------------------------------------------------------
+# ----CADASTRO-------------------------------------------------------------------
 
 @app.route("/cadastro", methods = ["GET"])
 def pg_cadastro_get():
@@ -35,7 +36,9 @@ def pg_cadastro():
         return redirect("/login")
     else:
         return "Complete as informações corretamente"
-    
+
+#----LOGIN--------------------------------------------------------------------
+
 @app.route("/login", methods = ["GET"])
 def pg_login_get():
     return render_template("login.html")
@@ -48,7 +51,7 @@ def pg_login():
     usuario_log_s= verifica_cadastrado(usuario,senha)
 
     if usuario_log_s:
-        session["usuario_log"] = usuario_log_s["nome"]
+        session["usuario_log"] = usuario_log_s
         return redirect("/")
     else:
         return redirect("/login")
@@ -57,6 +60,16 @@ def pg_login():
 def logout():
     session.clear()
     return redirect("/")
+
+#----CARRINHO-----------------------------------------------------------
+@app.route("/api/get/carrinho", methods = ["GET"])
+def api_get_carrinho():
+    if "usuario_log" in session:
+        carrinho = rec_carrinho(session["usuario_log"]["usuario"])
+        return jsonify(carrinho),200
+    else: 
+        return jsonify({"message":"Usuário não encontrado!"}), 401
+
 
 if __name__ == "__main__":
     app.run(debug=True)
