@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS itens_car(
     constraint fk_itens_car_prod foreign key (codigo_produto) references produto(codigo)
 );
     
-
+select codigo_carrinho, ped_fin from carrinho where usuario = "Ana Clara";
 
 -- select * from cadastro;
 -- show tables from cardapio;

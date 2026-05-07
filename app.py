@@ -5,6 +5,7 @@ from model.produtos import rec_produto_u
 from model.cadastro import cadastro
 from model.cadastro import verifica_cadastrado
 from model.carrinho import rec_carrinho
+from model.carrinho import ins_carrinho
 
 app = Flask(__name__)
 app.secret_key = "DevBurguer"
@@ -70,6 +71,17 @@ def api_get_carrinho():
     else: 
         return jsonify({"message":"Usuário não encontrado!"}), 401
 
+@app.route("/api/post/item_carrinho", methods=["POST"])
+def api_post_item_carrinho():
+    if "usuario_log" in session:
+        usuario = session["usuario_log"]["usuario"]
+        dados_json = request.get_json()
+        codigo_produto = dados_json.get("codigo_produto")
+        quantidade = dados_json("quantidade")
+        ins_carrinho(usuario,codigo_produto,quantidade)
+    else:
+        return redirect("/login")
 
-if __name__ == "__main__":
+
+if __name__ == "__main__":  
     app.run(debug=True)
