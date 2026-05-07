@@ -18,3 +18,20 @@ def rec_carrinho(usuario:str)->list:
     con.close()
 
     return resultado
+
+def ins_carrinho(usuario:str, codigo_produto:int, quantidade=1)->list:
+    con, cur  = Conexao.conectar()
+    cur.execute("""
+                SELECT codigo_carrinho from carrinho
+                WHERE usuario = %s and ped_fin = 0 limit 1;
+                """, [usuario])
+    ret_cod_carrinho = cur.fetchone()
+    if ret_cod_carrinho:
+        codigo_car = ret_cod_carrinho["codigo_carrinho"]
+    else:
+        cur.execute("INSERT INTO carrinho (usuario) VALUES (%s)", [usuario])
+        codigo_car = cur.lastwordid()
+
+    cur.execute("INSERT INTO itens_car (codigo_carrinho, codigo_produto, quantidade) VALUES (%s, %s, %s)", [codigo_car, codigo_produto, quantidade])
+    con.close
+
