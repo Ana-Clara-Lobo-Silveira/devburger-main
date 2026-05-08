@@ -37,8 +37,8 @@ def ins_carrinho(usuario, codigo_produto, quantidade = 1):
     con.commit()
     con.close()
 
-def del_carrinho(codigo_produto):
+def del_carrinho(usuario,codigo_produto):
     con, cur  = Conexao.conectar()
-    cur.execute("DELETE FROM itens_car WHERE codigo_produto=%s",[codigo_produto])
+    cur.execute("DELETE FROM itens_car WHERE usuario= %s AND codigo_produto=%s",[usuario,codigo_produto])
     con.commit()
     con.close()

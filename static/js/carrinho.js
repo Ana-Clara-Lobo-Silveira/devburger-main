@@ -48,3 +48,22 @@ async function inserirItemCarrinho(codigo_produto, quantidade = 1) {
 
     mostrar_carrinho();
 }
+
+async function deletarItemCarrinho(codigo_produto) {
+    const resposta = await fetch ("/api/delete/carrinho",{
+        method:"DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            codigo_produto: codigo_produto
+        })
+    });
+
+    if (!resposta.ok) {
+        alert("Erro ao deletar item!");
+        return;
+    }
+
+    mostrar_carrinho();
+}

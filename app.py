@@ -6,6 +6,7 @@ from model.cadastro import cadastro
 from model.cadastro import verifica_cadastrado
 from model.carrinho import rec_carrinho
 from model.carrinho import ins_carrinho
+from model.carrinho import del_carrinho
 
 app = Flask(__name__)
 app.secret_key = "DevBurguer"
@@ -80,6 +81,17 @@ def api_post_item_carrinho():
         quantidade = dados_json.get("quantidade")
         ins_carrinho(usuario,codigo_produto,quantidade)
         return jsonify({"message": "Inserido com sucesso."}), 200
+    else:
+        return redirect("/login")
+    
+@app.route("/api/delete/carrinho", methods=["DELETE"])
+def api_delete_item_carrinho():
+    if "usuario_log" in session:
+        usuario = session["usuario_log"]["usuario"]
+        dados_json = request.get_json()
+        codigo_produto = dados_json.get("codigo_produto")
+        del_carrinho(usuario, codigo_produto)
+        return jsonify({"message": "Deletado com sucesso."}), 200
     else:
         return redirect("/login")
 
