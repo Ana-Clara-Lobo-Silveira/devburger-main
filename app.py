@@ -36,7 +36,7 @@ def pg_cadastro():
     if cadastro(usuario, senha, nome):
         return redirect("/login")
     else:
-        return "Complete as informações corretamente"
+        return render_template("cadastro.html")
 
 #----LOGIN--------------------------------------------------------------------
 
@@ -71,14 +71,15 @@ def api_get_carrinho():
     else: 
         return jsonify({"message":"Usuário não encontrado!"}), 401
 
-@app.route("/api/post/item_carrinho", methods=["POST"])
+@app.route("/api/post/carrinho", methods=["POST"])
 def api_post_item_carrinho():
     if "usuario_log" in session:
         usuario = session["usuario_log"]["usuario"]
         dados_json = request.get_json()
         codigo_produto = dados_json.get("codigo_produto")
-        quantidade = dados_json("quantidade")
+        quantidade = dados_json.get("quantidade")
         ins_carrinho(usuario,codigo_produto,quantidade)
+        return jsonify({"message": "Inserido com sucesso."}), 200
     else:
         return redirect("/login")
 

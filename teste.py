@@ -1,2 +1,2 @@
 from model.carrinho import ins_carrinho
-ins_carrinho("Ana Clara", 3,2)
+ins_carrinho("Julia", 2,50)

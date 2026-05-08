@@ -1,5 +1,5 @@
-    async function  mostrar_carrinho() {
-    const resposta = await fetch("/api/get/carrinho")
+async function  mostrar_carrinho() {
+    const resposta = await fetch("http://127.0.0.1:5000/api/get/carrinho")
 
     if (!resposta.ok) {
         alert("ERRO AO CARREGAR CARRINHO!")
@@ -8,7 +8,8 @@
         const dados = await resposta.json()
 
         const carrinho = document.getElementById("carrinho")
-
+        carrinho.innerHTML = "";
+        
         for (let dado of dados){
             let linha = `    
         <div class="cart-item" >    
@@ -25,14 +26,25 @@
     
     };
 };
-
 mostrar_carrinho();
 
-async function inserirItemCarrinho(codigo_produto, quantidade){
-    const reposta = await fetch("/api/post/item_carrinho", {method: "POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({"codigo_produto":codigo_produto, "quantidade":quantidade})})
-    if(!resposta.ok){alert("Erro")
-    
-    };
+async function inserirItemCarrinho(codigo_produto, quantidade = 1) {
+
+    const resposta = await fetch("/api/post/carrinho", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            codigo_produto: codigo_produto,
+            quantidade: quantidade
+        })
+    });
+
+    if (!resposta.ok) {
+        alert("Erro ao inserir item!");
+        return;
+    }
 
     mostrar_carrinho();
 }
