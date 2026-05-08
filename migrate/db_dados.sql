@@ -16,14 +16,14 @@ insert into cardapio.carrinho(
 	usuario, 
     ped_fin
 ) values('Ana Clara', 1);
-INSERT INTO cardapio.itens_car 
-(codigo_item_car,
- codigo_carrinho,
- codigo_produto,
- quantidade)
- VALUES
- ('1',
- '1',
- '1',
- '1')
- ;
+-- INSERT INTO cardapio.itens_car 
+-- (codigo_item_car,
+ -- codigo_carrinho,
+ -- codigo_produto,
+ -- quantidade)
+ -- VALUES
+ -- ('1',
+ -- ' 1',
+ -- '1',
+--  '1')
+ -- ;
